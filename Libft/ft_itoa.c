@@ -1,0 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/06 13:18:39 by ekarakas          #+#    #+#             */
+/*   Updated: 2026/02/06 16:04:07 by ekarakas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static int	count_len(long n)
+{
+	int	len;
+
+	len = (n <= 0);
+	while (n)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	long	nb;
+	int		len;
+	char	*res;
+
+	nb = n;
+	len = count_len(nb);
+	res = malloc(len + 1);
+	if (!res)
+		return (NULL);
+	res[len--] = '\0';
+	if (nb < 0)
+		nb = -nb;
+	while (len >= 0)
+	{
+		res[len] = (nb % 10) + '0';
+		nb /= 10;
+		len--;
+	}
+	if (n < 0)
+		res[0] = '-';
+	return (res);
+}
+/*
+int	main()
+{
+	printf("%s\n", ft_itoa(123));
+	printf("%s\n", ft_itoa(-123));
+	printf("%s\n", ft_itoa(-2147483648));
+	printf("%s\n", ft_itoa(2147483647));
+	return (0);
+}*/
