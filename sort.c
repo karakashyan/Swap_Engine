@@ -96,5 +96,22 @@ void    insertion_sort(t_data *data)
 
 void	normalize(t_stack *stack)
 {
+	t_stack	*cur;
+	t_stack	*tmp;
+	int		pos;
 
+	cur = stack;
+	while (cur)
+	{
+		pos = 0;
+		tmp = stack;
+		while (tmp)
+		{
+			if (tmp->value < cur->value)
+				pos++;
+			tmp = tmp->next;
+		}
+		cur->index = pos;
+		cur = cur->next;
+	}
 }
