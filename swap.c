@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/20 17:38:42 by ekarakas          #+#    #+#             */
+/*   Updated: 2026/03/21 14:59:38 by ekarakas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	swap(t_stack *stack)
+{
+	int	temp;
+
+	if (!stack || !stack->next)
+		return ;
+	temp = stack->value;
+	stack->value = stack->next->value;
+	stack->next->value = temp;
+}
+
+void	sa(t_data *data)
+{
+	swap(data->a);
+	write(1, "sa\n", 3);
+}
+
+void	sb(t_data *data)
+{
+	swap(data->b);
+	write(1, "sb\n", 3);
+}
+
+void	ss(t_data *data)
+{
+	swap(data->a);
+	swap(data->b);
+	write(1, "ss\n", 3);
+}

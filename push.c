@@ -13,15 +13,6 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	print_stack(t_stack *stack)
-{
-	while (stack != NULL)
-	{
-		printf("%d, ", stack->value);
-		stack = stack->next;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_data *data;
