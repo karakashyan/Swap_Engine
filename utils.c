@@ -22,6 +22,7 @@ void	push_front(t_stack **stack, int value)
 	if (!node)
 		return ;
 	node->value = value;
+	node->index = 0;
 	node->prev = NULL;
 	node->next = *stack;
 	if (*stack)
@@ -80,7 +81,9 @@ void	print_stack(t_stack *stack)
 {
 	while (stack != NULL)
 	{
-		printf("%d, ", stack->value);
+		ft_putnbr_fd(stack->value, 1);
+		write(1, " ", 1);
 		stack = stack->next;
 	}
+	write(1, "\n", 1);
 }

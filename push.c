@@ -6,33 +6,24 @@
 /*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:55:04 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/17 23:01:24 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:35:36 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+void	pb(t_data *data)
 {
-	t_data *data;
-	int i;
+	if (!data->a)
+		return ;
+	push_front(&data->b, stack_pop(&data->a));
+	write(1, "pb\n", 3);
+}
 
-	if (argc < 2)
-		return (0);
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (1);
-	data->a = NULL;
-	data->b = NULL;
-	i = argc - 1;
-	while (i >= 1)
-	{
-		// parsing
-		// ft_atoi
-		push_front(&data->a, ft_atoi(argv[i]));
-		i--;
-	}
-	print_stack(data->a);
-    return (0);
+void	pa(t_data *data)
+{
+	if (!data->b)
+		return ;
+	push_front(&data->a, stack_pop(&data->b));
+	write(1, "pa\n", 3);
 }
