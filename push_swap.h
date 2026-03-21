@@ -55,7 +55,6 @@ void				rrr(t_data *data);
 void				pa(t_data *data);
 void				pb(t_data *data);
 void				sort_three(t_data *data);
-void				sort_five(t_data *data);
 void    			insertion_sort(t_data *data);
 void    			normalize(t_stack *stack);
 

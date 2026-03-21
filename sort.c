@@ -51,24 +51,6 @@ void	sort_three(t_data *data)
 		sa(data);
 }
 
-void	sort_five(t_data *data)
-{
-	int	size;
-	int	min_pos;
-
-	size = stack_size(data->a);
-	while (size > 3)
-	{
-		min_pos = find_min(data->a);
-		bring_to_top(data, min_pos, size);
-		pb(data);
-		size--;
-	}
-	sort_three(data);
-	pa(data);
-	pa(data);
-}
-
 void    insertion_sort(t_data *data)
 {
     int    size;
