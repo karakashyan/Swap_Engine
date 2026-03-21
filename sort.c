@@ -77,9 +77,10 @@ void    insertion_sort(t_data *data)
     size = stack_size(data->a);
     if (size < 2)
         return ;
-    if (size == 2 && data->a->value > data->a->next->value)
+    if (size == 2)
     {
-        sa(data);
+		if (data->a->value > data->a->next->value)
+        	sa(data);
         return ;
     }
     while (size > 3)

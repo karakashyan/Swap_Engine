@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 		i--;
 	}
 	print_stack(data->a);
-	sort_five(data);
+	insertion_sort(data);
 	print_stack(data->a);
 	return (0);
 }
