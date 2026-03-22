@@ -44,8 +44,11 @@ int	main(int argc, char **argv)
 		push_front(&data->a, number);
 		i--;
 	}
+	normalize(data->a);
 	print_stack(data->a);
-	insertion_sort(data);
+	chunk_sort(data);
+	normalize(data->a);
 	print_stack(data->a);
+	
 	return (0);
 }

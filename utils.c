@@ -30,13 +30,14 @@ void	push_front(t_stack **stack, int value)
 	*stack = node;
 }
 
-void	bring_to_top(t_data *data, int pos, int size)
+void	bring_to_top(t_data *data, int pos, int size,
+		void (*rot)(t_data *), void (*rrot)(t_data *))
 {
 	if (pos <= size / 2)
 	{
 		while (pos > 0)
 		{
-			ra(data);
+			rot(data);
 			pos--;
 		}
 	}
@@ -44,7 +45,7 @@ void	bring_to_top(t_data *data, int pos, int size)
 	{
 		while (pos < size)
 		{
-			rra(data);
+			rrot(data);
 			pos++;
 		}
 	}
@@ -81,6 +82,9 @@ void	print_stack(t_stack *stack)
 {
 	while (stack != NULL)
 	{
+		write(1, "(", 1);
+		ft_putnbr_fd(stack->index, 1);
+		write(1, ") -> ", 5);
 		ft_putnbr_fd(stack->value, 1);
 		write(1, " ", 1);
 		stack = stack->next;

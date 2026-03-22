@@ -34,6 +34,28 @@ int	find_min(t_stack *stack)
 	return (min_pos);
 }
 
+int	find_max(t_stack *stack)
+{
+	int	max_idx;
+	int	max_pos;
+	int	i;
+
+	i = 0;
+	max_idx = stack->index;
+	max_pos = 0;
+	while (stack)
+	{
+		if (stack->index > max_idx)
+		{
+			max_idx = stack->index;
+			max_pos = i;
+		}
+		i++;
+		stack = stack->next;
+	}
+	return (max_pos);
+}
+
 void	sort_three(t_data *data)
 {
 	int	x;
@@ -68,7 +90,7 @@ void    insertion_sort(t_data *data)
     while (size > 3)
     {
         min_pos = find_min(data->a);
-        bring_to_top(data, min_pos, size);
+        bring_to_top(data, min_pos, size, ra, rra);
         pb(data);
         size--;
     }
@@ -96,5 +118,60 @@ void	normalize(t_stack *stack)
 		}
 		cur->index = pos;
 		cur = cur->next;
+	}
+}
+
+int	count_chunk(t_stack *stack, int min, int max)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		if (stack->index >= min && stack->index < max)
+			count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+void	chunk_sort(t_data *data)
+{
+	int	size;
+	int	chunk_size;
+	int	chunk;
+	int	count;
+	int	i;
+
+	size = stack_size(data->a);
+	chunk_size = 1;
+	while (chunk_size * chunk_size < size)
+		chunk_size++;
+	normalize(data->a);
+	chunk = 0;
+	while (chunk * chunk_size < size)
+	{
+		count = count_chunk(data->a, chunk * chunk_size,
+				(chunk + 1) * chunk_size);
+		while (count > 0)
+		{
+			if (data->a->index >= chunk * chunk_size
+				&& data->a->index < (chunk + 1) * chunk_size)
+			{
+				i = data->a->index;
+				pb(data);
+				data->b->index = i;
+				count--;
+			}
+			else
+				ra(data);
+		}
+		chunk++;
+	}
+	while (data->b)
+	{
+		i = find_max(data->b);
+		bring_to_top(data, i, stack_size(data->b), rb, rrb);
+		pa(data);
 	}
 }
