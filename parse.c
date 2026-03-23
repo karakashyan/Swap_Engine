@@ -32,6 +32,16 @@ bool	parsing(char *value)
 	return (true);
 }
 
+static void	check_overflow(int sign, long number)
+{
+	if ((sign == 1 && number > 2147483647)
+		|| (sign == -1 && number > 2147483648))
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+}
+
 int	atoi_check(const char *nptr)
 {
 	int		i;
@@ -52,13 +62,8 @@ int	atoi_check(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		number = number * 10 + (nptr[i] - '0');
+		check_overflow(sign, number);
 		i++;
-		if ((sign == 1 && number > 2147483647) || (sign == -1
-				&& number > 2147483648))
-		{
-			write(2, "Error\n", 6);
-			exit(1);
-		}
 	}
 	return ((int)(sign * number));
 }
@@ -91,14 +96,4 @@ char	*join_args(int argc, char const **argv)
 		i++;
 	}
 	return (s);
-}
-
-int	count_args(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != NULL)
-		i++;
-	return (i);
 }

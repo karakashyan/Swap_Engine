@@ -8,7 +8,7 @@ RM = rm -rf
 LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = main.c push.c parse.c utils.c swap.c rotate.c reverse.c sort.c
+SRCS = main.c push.c parse.c utils.c swap.c rotate.c reverse.c sort.c utils2.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(NAME)

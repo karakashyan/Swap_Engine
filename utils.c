@@ -6,13 +6,13 @@
 /*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:34:20 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/21 16:52:22 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/23 18:41:51 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_front(t_stack **stack, int value)
+void	push_front(t_stack **stack, int value, int index)
 {
 	t_stack	*node;
 
@@ -22,7 +22,7 @@ void	push_front(t_stack **stack, int value)
 	if (!node)
 		return ;
 	node->value = value;
-	node->index = 0;
+	node->index = index;
 	node->prev = NULL;
 	node->next = *stack;
 	if (*stack)
@@ -30,14 +30,16 @@ void	push_front(t_stack **stack, int value)
 	*stack = node;
 }
 
-void	bring_to_top(t_data *data, int pos, int size,
-		void (*rot)(t_data *), void (*rrot)(t_data *))
+void	bring_to_top(t_data *data, int pos, int size, int flag)
 {
 	if (pos <= size / 2)
 	{
 		while (pos > 0)
 		{
-			rot(data);
+			if (flag == 0)
+				ra(data);
+			else
+				rb(data);
 			pos--;
 		}
 	}
@@ -45,7 +47,10 @@ void	bring_to_top(t_data *data, int pos, int size,
 	{
 		while (pos < size)
 		{
-			rrot(data);
+			if (flag == 0)
+				rra(data);
+			else
+				rrb(data);
 			pos++;
 		}
 	}

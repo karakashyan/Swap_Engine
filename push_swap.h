@@ -6,7 +6,7 @@
 /*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:53:12 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/21 17:06:08 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/23 22:18:41 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ typedef struct s_data
 	t_stack			*b;
 }					t_data;
 
-void				bring_to_top(t_data *data, int pos, int size,
-					void (*rot)(t_data *), void (*rrot)(t_data *));
-void				push_front(t_stack **stack, int value);
+void				bring_to_top(t_data *data, int pos, int size, int flag);
+void				push_front(t_stack **stack, int value, int index);
 int					stack_pop(t_stack **stack);
 void				print_stack(t_stack *stack);
 bool				parsing(char *value);
@@ -57,8 +56,13 @@ void				rrr(t_data *data);
 void				pa(t_data *data);
 void				pb(t_data *data);
 void				sort_three(t_data *data);
-void    			insertion_sort(t_data *data);
-void    			chunk_sort(t_data *data);
-void    			normalize(t_stack *stack);
+void				insertion_sort(t_data *data);
+void				chunk_sort(t_data *data);
+void				normalize(t_stack *stack);
+int					is_sorted(t_stack *stack);
+void				radix_sort(t_data *data);
+int					find_cheapest(t_stack *stack);
+int					get_flag(int argc, char **argv);
+void				adaptive_sort(t_data *data);
 
 #endif

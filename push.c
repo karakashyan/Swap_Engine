@@ -6,7 +6,7 @@
 /*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:55:04 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/21 15:35:36 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/23 18:44:12 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 void	pb(t_data *data)
 {
+	int	idx;
+	
 	if (!data->a)
 		return ;
-	push_front(&data->b, stack_pop(&data->a));
+	idx = data->a->index;
+	push_front(&data->b, stack_pop(&data->a), idx);
 	write(1, "pb\n", 3);
 }
 
 void	pa(t_data *data)
 {
+	int	idx;
+	
 	if (!data->b)
 		return ;
-	push_front(&data->a, stack_pop(&data->b));
+	idx = data->b->index;
+	push_front(&data->a, stack_pop(&data->b), idx);
 	write(1, "pa\n", 3);
 }
