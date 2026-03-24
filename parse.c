@@ -79,20 +79,48 @@ bool	dub_check(int n, t_stack *a)
 	return (true);
 }
 
-char	*join_args(int argc, char const **argv)
+// char	*join_args(int argc, char const **argv)
+// {
+// 	int		i;
+// 	char	*s;
+// 	char	*temp;
+
+// 	i = 2;
+// 	s = ft_strdup(argv[1]);
+// 	while (i < argc)
+// 	{
+// 		temp = ft_strjoin(s, " ");
+// 		free(s);
+// 		s = ft_strjoin(temp, argv[i]);
+// 		free(temp);
+// 		i++;
+// 	}
+// 	return (s);
+// }
+
+
+char	*join_nums(int argc, char const **argv)
 {
 	int		i;
 	char	*s;
 	char	*temp;
 
-	i = 2;
-	s = ft_strdup(argv[1]);
+	i = 1;
+	s = NULL;
 	while (i < argc)
 	{
-		temp = ft_strjoin(s, " ");
-		free(s);
-		s = ft_strjoin(temp, argv[i]);
-		free(temp);
+		if (ft_strncmp(argv[i], "--", 2) != 0)
+		{
+			if (!s)
+				s = ft_strdup(argv[i]);
+			else
+			{
+				temp = ft_strjoin(s, " ");
+				free(s);
+				s = ft_strjoin(temp, argv[i]);
+				free(temp);
+			}
+		}
 		i++;
 	}
 	return (s);

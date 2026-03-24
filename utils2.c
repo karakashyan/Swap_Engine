@@ -6,7 +6,7 @@
 /*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 14:05:43 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/24 16:26:25 by arptadev         ###   ########.fr       */
+/*   Updated: 2026/03/24 19:48:08 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	count_args(char **s)
 	return (i);
 }
 
-int is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	while (stack && stack->next)
 	{
@@ -33,14 +33,32 @@ int is_sorted(t_stack *stack)
 	return (1);
 }
 
-int	total_ops(t_data *data)
+void	free_stack(t_stack **stack)
+{
+	t_stack	*temp;
+
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
+	}
+}
+
+void	free_all(t_data *data, char **arg)
 {
 	int	i;
-	int	total;
 
-	i = 0;
-	total = 0;
-	while (i < 11)
-		total += data->ops[i++];
-	return (total);
+	if (arg)
+	{
+		i = 0;
+		while (arg[i])
+			free(arg[i++]);
+		free(arg);
+	}
+	if (!data)
+		return ;
+	free_stack(&data->a);
+	free_stack(&data->b);
+	free(data);
 }
