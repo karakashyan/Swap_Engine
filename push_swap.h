@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:53:12 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/24 20:41:43 by arptadev         ###   ########.fr       */
+/*   Updated: 2026/03/24 22:31:36 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void				insertion_sort(t_data *data);
 void				chunk_sort(t_data *data);
 void				normalize(t_stack *stack);
 int					is_sorted(t_stack *stack);
-void				radix_sort(t_data *data);
+// void				radix_sort(t_data *data);
 int					find_cheapest(t_stack *stack);
 // int					get_flag(int argc, char **argv);
 void				adaptive_sort(t_data *data);
@@ -88,5 +88,6 @@ void				free_stack(t_stack **stack);
 void				free_all(t_data *data, char **arg);
 double				compute_disorder(t_stack *stack);
 int					parse_options(int argc, char **argv, int *bench);
+void				merge_sort(t_data *data);
 
 #endif

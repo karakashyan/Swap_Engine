@@ -135,30 +135,96 @@ int	count_chunk(t_stack *stack, int min, int max)
 	return (count);
 }
 
-void	radix_sort(t_data *data)
-{
-	int max_bits;
-	int size;
-	int i;
+// void	radix_sort(t_data *data)
+// {
+// 	int max_bits;
+// 	int size;
+// 	int i;
 
-	if (is_sorted(data->a))
-		return ;
-	size = stack_size(data->a);
-	max_bits = 0;
-	normalize(data->a);
-	while ((size - 1) >> max_bits)
+// 	if (is_sorted(data->a))
+// 		return ;
+// 	size = stack_size(data->a);
+// 	max_bits = 0;
+// 	normalize(data->a);
+// 	while ((size - 1) >> max_bits)
+// 	{
+// 		i = size;
+// 		while (i--)
+// 		{
+// 			if (!data->a)
+//             	break ;
+// 			if ((data->a->index >> max_bits) & 1)
+// 				ra(data);
+// 			else
+// 				pb(data);
+// 		}
+// 		while (data->b)
+// 			pa(data);
+// 		max_bits++;
+// 	}
+// }
+
+static void	merge_ab(t_data *data, int left, int right)
+{
+	int	total;
+
+	total = left + right;
+	while (left > 0 && right > 0)
 	{
-		i = size;
-		while (i--)
+		if (data->a->value <= data->b->value)
 		{
-			if ((data->a->index >> max_bits) & 1)
-				ra(data);
-			else
-				pb(data);
+			ra(data);
+			left--;
 		}
-		while (data->b)
+		else
+		{
 			pa(data);
-		max_bits++;
+			right--;
+		}
+	}
+	while (right > 0)
+	{
+		pa(data);
+		right--;
+	}
+	while (total > 0)
+	{
+		rra(data);
+		total--;
+	}
+}
+
+void	merge_sort(t_data *data)
+{
+	int	size;
+	int	width;
+	int	i;
+	int	left;
+	int	right;
+
+	size = stack_size(data->a);
+	width = 1;
+	while (width < size)
+	{
+		i = 0;
+		while (i + width < size)
+		{
+			left = width;
+			right = width;
+			if (i + 2 * width > size)
+				right = size - i - width;
+			while (right > 0)
+			{
+				pb(data);
+				right--;
+			}
+			right = width;
+			if (i + 2 * width > size)
+				right = size - i - width;
+			merge_ab(data, left, right);
+			i += 2 * width;
+		}
+		width *= 2;
 	}
 }
 
@@ -210,7 +276,7 @@ void	chunk_sort(t_data *data)
 	if (size <= 100)
 		chunk_size = 18;
 	else
-		chunk_size = 45;
+		chunk_size = 35;
 	// chunk = 0;
 	// while (chunk_size * chunk_size < size)
 	// 	chunk_size++;
@@ -279,5 +345,5 @@ void	adaptive_sort(t_data *data)
 	else if (disorder < 0.5)
 		chunk_sort(data);
 	else
-		radix_sort(data);
+		merge_sort(data);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bench.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 21:37:52 by ekarakas          #+#    #+#             */
+/*   Updated: 2026/03/24 21:40:13 by ekarakas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	total_ops(t_data *data)
@@ -39,15 +51,17 @@ static void	print_percent(double d, int fd)
 
 void	print_bench(t_data *data, double disorder, int flag)
 {
-	static char	*names[] = {"sa", "sb", "ss", "pa", "pb",
-		"ra", "rb", "rr", "rra", "rrb", "rrr"};
+	static char	*names[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr",
+		"rra", "rrb", "rrr"};
+	char		*strat;
 	int			i;
 
+	strat = get_strategy(flag);
 	write(2, "Disorder:  ", 11);
 	print_percent(disorder, 2);
 	write(2, "%\n", 2);
 	write(2, "Strategy:  ", 11);
-	write(2, get_strategy(flag), ft_strlen(get_strategy(flag)));
+	write(2, strat, ft_strlen(strat));
 	write(2, "\n", 1);
 	write(2, "Total ops: ", 11);
 	ft_putnbr_fd(total_ops(data), 2);
