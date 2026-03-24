@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:53:12 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/23 22:18:41 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:17:34 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,24 @@ typedef struct s_data
 {
 	t_stack			*a;
 	t_stack			*b;
+	int				ops[11];
+	int				bench;
 }					t_data;
+
+typedef enum e_op
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+}					t_op;
 
 void				bring_to_top(t_data *data, int pos, int size, int flag);
 void				push_front(t_stack **stack, int value, int index);
@@ -64,5 +81,6 @@ void				radix_sort(t_data *data);
 int					find_cheapest(t_stack *stack);
 int					get_flag(int argc, char **argv);
 void				adaptive_sort(t_data *data);
+int					total_ops(t_data *data);
 
 #endif

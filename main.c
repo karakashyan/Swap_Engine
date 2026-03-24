@@ -2,18 +2,16 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2026/03/19 14:36:41 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/21 16:20:07 by ekarakas         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 14:44:16 by arptadev          #+#    #+#             */
+/*   Updated: 2026/03/24 14:44:16 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	get_flag(int argc, char **argv)
 {
@@ -46,11 +44,9 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
-		return (1);
-	data->a = NULL;
-	data->b = NULL;
+    	return (1);
 	flag = get_flag(argc, argv);
 	if (flag != 3 || ft_strncmp(argv[1], "--", 2) == 0)
 		arg = ft_split(join_args(argc - 1, (char const **)argv + 1), ' ');

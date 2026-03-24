@@ -2,19 +2,15 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2026/03/20 19:24:48 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/21 16:52:52 by ekarakas         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 14:45:56 by arptadev          #+#    #+#             */
+/*   Updated: 2026/03/24 14:45:56 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	find_min(t_stack *stack)
 {
@@ -38,27 +34,27 @@ int	find_min(t_stack *stack)
 	return (min_pos);
 }
 
-int	find_max(t_stack *stack)
-{
-	int max_idx;
-	int max_pos;
-	int i;
+// int	find_max(t_stack *stack)
+// {
+// 	int max_idx;
+// 	int max_pos;
+// 	int i;
 
-	i = 0;
-	max_idx = stack->index;
-	max_pos = 0;
-	while (stack)
-	{
-		if (stack->index > max_idx)
-		{
-			max_idx = stack->index;
-			max_pos = i;
-		}
-		i++;
-		stack = stack->next;
-	}
-	return (max_pos);
-}
+// 	i = 0;
+// 	max_idx = stack->index;
+// 	max_pos = 0;
+// 	while (stack)
+// 	{
+// 		if (stack->index > max_idx)
+// 		{
+// 			max_idx = stack->index;
+// 			max_pos = i;
+// 		}
+// 		i++;
+// 		stack = stack->next;
+// 	}
+// 	return (max_pos);
+// }
 
 void	sort_three(t_data *data)
 {
@@ -93,7 +89,7 @@ void	insertion_sort(t_data *data)
 	}
 	while (size > 3)
 	{
-		min_pos = find_cheapest(data->a);
+		min_pos = find_min(data->a);
 		bring_to_top(data, min_pos, size, 0);
 		pb(data);
 		size--;

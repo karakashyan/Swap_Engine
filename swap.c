@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2026/03/20 17:38:42 by ekarakas          #+#    #+#             */
 /*   Updated: 2026/03/21 14:59:38 by ekarakas         ###   ########.fr       */
 /*                                                                            */
@@ -14,7 +17,7 @@
 
 void	swap(t_stack *stack)
 {
-	int	temp;
+	int temp;
 
 	if (!stack || !stack->next)
 		return ;
@@ -29,12 +32,14 @@ void	swap(t_stack *stack)
 void	sa(t_data *data)
 {
 	swap(data->a);
+	data->ops[SA]++;
 	write(1, "sa\n", 3);
 }
 
 void	sb(t_data *data)
 {
 	swap(data->b);
+	data->ops[SB]++;
 	write(1, "sb\n", 3);
 }
 
@@ -42,5 +47,6 @@ void	ss(t_data *data)
 {
 	swap(data->a);
 	swap(data->b);
+	data->ops[SS]++;
 	write(1, "ss\n", 3);
 }

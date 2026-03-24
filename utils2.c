@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 14:05:43 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/23 15:12:54 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:26:25 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,16 @@ int is_sorted(t_stack *stack)
 		stack = stack->next;
 	}
 	return (1);
+}
+
+int	total_ops(t_data *data)
+{
+	int	i;
+	int	total;
+
+	i = 0;
+	total = 0;
+	while (i < 11)
+		total += data->ops[i++];
+	return (total);
 }
