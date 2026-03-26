@@ -33,14 +33,16 @@ void	sa(t_data *data)
 {
 	swap(data->a);
 	data->ops[SA]++;
-	write(1, "sa\n", 3);
+	if (!data->silent)
+		write(1, "sa\n", 3);
 }
 
 void	sb(t_data *data)
 {
 	swap(data->b);
 	data->ops[SB]++;
-	write(1, "sb\n", 3);
+	if (!data->silent)
+		write(1, "sb\n", 3);
 }
 
 void	ss(t_data *data)
@@ -48,5 +50,6 @@ void	ss(t_data *data)
 	swap(data->a);
 	swap(data->b);
 	data->ops[SS]++;
-	write(1, "ss\n", 3);
+	if (!data->silent)
+		write(1, "ss\n", 3);
 }

@@ -36,14 +36,16 @@ void	rra(t_data *data)
 {
 	reverse(&data->a);
 	data->ops[RRA]++;
-	write(1, "rra\n", 4);
+	if (!data->silent)
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_data *data)
 {
 	reverse(&data->b);
 	data->ops[RRB]++;
-	write(1, "rrb\n", 4);
+	if (!data->silent)
+		write(1, "rrb\n", 4);
 }
 
 void	rrr(t_data *data)
@@ -51,5 +53,6 @@ void	rrr(t_data *data)
 	reverse(&data->a);
 	reverse(&data->b);
 	data->ops[RRR]++;
-	write(1, "rrr\n", 4);
+	if (!data->silent)
+		write(1, "rrr\n", 4);
 }

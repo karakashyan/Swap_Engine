@@ -6,7 +6,7 @@
 /*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:53:12 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/24 22:31:36 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:23:16 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	t_stack			*b;
 	int				ops[11];
 	int				bench;
+	int				silent;
 }					t_data;
 
 typedef enum e_op
@@ -56,12 +57,10 @@ void				print_stack(t_stack *stack);
 bool				parsing(char *value);
 int					atoi_check(const char *nptr);
 bool				dub_check(int n, t_stack *a);
-// char				*join_args(int argc, char const **argv);
 char				*join_nums(int argc, char const **argv);
 int					count_args(char **s);
 int					stack_size(t_stack *stack);
 int					find_min(t_stack *stack);
-// int					find_max(t_stack *stack);
 void				sa(t_data *data);
 void				sb(t_data *data);
 void				ss(t_data *data);
@@ -78,9 +77,8 @@ void				insertion_sort(t_data *data);
 void				chunk_sort(t_data *data);
 void				normalize(t_stack *stack);
 int					is_sorted(t_stack *stack);
-// void				radix_sort(t_data *data);
+void				radix_sort(t_data *data);
 int					find_cheapest(t_stack *stack);
-// int					get_flag(int argc, char **argv);
 void				adaptive_sort(t_data *data);
 int					total_ops(t_data *data);
 void				print_bench(t_data *data, double disorder, int flag);
@@ -88,6 +86,5 @@ void				free_stack(t_stack **stack);
 void				free_all(t_data *data, char **arg);
 double				compute_disorder(t_stack *stack);
 int					parse_options(int argc, char **argv, int *bench);
-void				merge_sort(t_data *data);
-
+int					fill_stack(t_data *data, char **arg);
 #endif

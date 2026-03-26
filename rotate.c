@@ -38,14 +38,16 @@ void	ra(t_data *data)
 {
 	rotate(&data->a);
 	data->ops[RA]++;
-	write(1, "ra\n", 3);
+	if (!data->silent)
+		write(1, "ra\n", 3);
 }
 
 void	rb(t_data *data)
 {
 	rotate(&data->b);
 	data->ops[RB]++;
-	write(1, "rb\n", 3);
+	if (!data->silent)
+		write(1, "rb\n", 3);
 }
 
 void	rr(t_data *data)
@@ -53,5 +55,6 @@ void	rr(t_data *data)
 	rotate(&data->a);
 	rotate(&data->b);
 	data->ops[RR]++;
-	write(1, "rr\n", 3);
+	if (!data->silent)
+		write(1, "rr\n", 3);
 }

@@ -49,53 +49,14 @@ int	parse_options(int argc, char **argv, int *bench)
 	return (flag);
 }
 
-static int	fill_stack(t_data *data, char **arg)
-{
-	int size;
-	int i;
-	int number;
-
-	size = count_args(arg);
-	i = size;
-	while (i--)
-	{
-		if (!parsing(arg[i]))
-		{
-			write(2, "Error\n", 6);
-			return (-1);
-		}
-		number = atoi_check(arg[i]);
-		if (!dub_check(number, data->a))
-		{
-			write(2, "Error\n", 6);
-			return (-1);
-		}
-		push_front(&data->a, number, 0);
-	}
-	return (size);
-}
-
 static void	run_sort(t_data *data, int flag)
 {
-	int size;
-
-	size = stack_size(data->a);
-	if (size <= 1 || is_sorted(data->a))
-		return ;
-	if (size == 2)
-	{
-		if (data->a->value > data->a->next->value)
-			sa(data);
-		return ;
-	}
-	if (size == 3)
-		sort_three(data);
-	else if (size <= 5 || flag == 0)
+	if (flag == 0)
 		insertion_sort(data);
 	else if (flag == 1)
 		chunk_sort(data);
 	else if (flag == 2)
-		merge_sort(data);
+		radix_sort(data);
 	else
 		adaptive_sort(data);
 }
@@ -131,10 +92,13 @@ int	main(int argc, char **argv)
 		free_all(data, arg);
 		return (1);
 	}
+	normalize(data->a);
+	print_stack(data->a);
 	disorder = compute_disorder(data->a);
 	run_sort(data, flag);
 	if (bench)
 		print_bench(data, disorder, flag);
+	print_stack(data->a);
 	free_all(data, arg);
 	return (0);
 }

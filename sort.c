@@ -2,15 +2,19 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2026/03/24 14:45:56 by arptadev          #+#    #+#             */
 /*   Updated: 2026/03/24 14:45:56 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	find_min(t_stack *stack)
 {
@@ -33,28 +37,6 @@ int	find_min(t_stack *stack)
 	}
 	return (min_pos);
 }
-
-// int	find_max(t_stack *stack)
-// {
-// 	int max_idx;
-// 	int max_pos;
-// 	int i;
-
-// 	i = 0;
-// 	max_idx = stack->index;
-// 	max_pos = 0;
-// 	while (stack)
-// 	{
-// 		if (stack->index > max_idx)
-// 		{
-// 			max_idx = stack->index;
-// 			max_pos = i;
-// 		}
-// 		i++;
-// 		stack = stack->next;
-// 	}
-// 	return (max_pos);
-// }
 
 void	sort_three(t_data *data)
 {
@@ -91,7 +73,13 @@ void	insertion_sort(t_data *data)
 	{
 		min_pos = find_min(data->a);
 		bring_to_top(data, min_pos, size, 0);
-		pb(data);
+		if (is_sorted(data->a))
+		{
+			pa(data);
+			return ;
+		}
+		else
+			pb(data);
 		size--;
 	}
 	sort_three(data);
@@ -135,96 +123,30 @@ int	count_chunk(t_stack *stack, int min, int max)
 	return (count);
 }
 
-// void	radix_sort(t_data *data)
-// {
-// 	int max_bits;
-// 	int size;
-// 	int i;
-
-// 	if (is_sorted(data->a))
-// 		return ;
-// 	size = stack_size(data->a);
-// 	max_bits = 0;
-// 	normalize(data->a);
-// 	while ((size - 1) >> max_bits)
-// 	{
-// 		i = size;
-// 		while (i--)
-// 		{
-// 			if (!data->a)
-//             	break ;
-// 			if ((data->a->index >> max_bits) & 1)
-// 				ra(data);
-// 			else
-// 				pb(data);
-// 		}
-// 		while (data->b)
-// 			pa(data);
-// 		max_bits++;
-// 	}
-// }
-
-static void	merge_ab(t_data *data, int left, int right)
+void	radix_sort(t_data *data)
 {
-	int	total;
-
-	total = left + right;
-	while (left > 0 && right > 0)
-	{
-		if (data->a->value <= data->b->value)
-		{
-			ra(data);
-			left--;
-		}
-		else
-		{
-			pa(data);
-			right--;
-		}
-	}
-	while (right > 0)
-	{
-		pa(data);
-		right--;
-	}
-	while (total > 0)
-	{
-		rra(data);
-		total--;
-	}
-}
-
-void	merge_sort(t_data *data)
-{
-	int	size;
-	int	width;
-	int	i;
-	int	left;
-	int	right;
+	int max_bits;
+	int size;
+	int i;
 
 	size = stack_size(data->a);
-	width = 1;
-	while (width < size)
+	max_bits = 0;
+	normalize(data->a);
+	while ((size - 1) >> max_bits)
 	{
-		i = 0;
-		while (i + width < size)
+		i = size;
+		while (i-- && data->a)
 		{
-			left = width;
-			right = width;
-			if (i + 2 * width > size)
-				right = size - i - width;
-			while (right > 0)
-			{
+			if ((data->a->index >> max_bits) & 1)
+				ra(data);
+			else
 				pb(data);
-				right--;
-			}
-			right = width;
-			if (i + 2 * width > size)
-				right = size - i - width;
-			merge_ab(data, left, right);
-			i += 2 * width;
 		}
-		width *= 2;
+		while (data->b)
+			pa(data);
+		if (is_sorted(data->a))
+        	return ;
+		max_bits++;
 	}
 }
 
@@ -274,12 +196,9 @@ void	chunk_sort(t_data *data)
 
 	size = stack_size(data->a);
 	if (size <= 100)
-		chunk_size = 18;
+		chunk_size = 25;
 	else
-		chunk_size = 35;
-	// chunk = 0;
-	// while (chunk_size * chunk_size < size)
-	// 	chunk_size++;
+		chunk_size = 50;
 	normalize(data->a);
 	chunk = 0;
 	while (chunk * chunk_size < size)
@@ -338,12 +257,32 @@ double	compute_disorder(t_stack *stack)
 void	adaptive_sort(t_data *data)
 {
 	double disorder;
+	int size;
 
+	size = stack_size(data->a);
+	if (size <= 1 || is_sorted(data->a))
+		return ;
+	if (size == 2)
+	{
+		if (data->a->value > data->a->next->value)
+			sa(data);
+		return ;
+	}
+	if (size == 3)
+	{
+		sort_three(data);
+		return ;
+	}
+	else if (size <= 10)
+	{
+		insertion_sort(data);
+		return ;
+	}
 	disorder = compute_disorder(data->a);
 	if (disorder < 0.2)
 		insertion_sort(data);
 	else if (disorder < 0.5)
 		chunk_sort(data);
 	else
-		merge_sort(data);
+		radix_sort(data);
 }

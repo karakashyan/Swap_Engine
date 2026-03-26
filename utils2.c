@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 14:05:43 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/24 19:48:08 by arptadev         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:23:02 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,32 @@ int	is_sorted(t_stack *stack)
 		stack = stack->next;
 	}
 	return (1);
+}
+
+int	fill_stack(t_data *data, char **arg)
+{
+	int size;
+	int i;
+	int number;
+
+	size = count_args(arg);
+	i = size;
+	while (i--)
+	{
+		if (!parsing(arg[i]))
+		{
+			write(2, "Error\n", 6);
+			return (-1);
+		}
+		number = atoi_check(arg[i]);
+		if (!dub_check(number, data->a))
+		{
+			write(2, "Error\n", 6);
+			return (-1);
+		}
+		push_front(&data->a, number, 0);
+	}
+	return (size);
 }
 
 void	free_stack(t_stack **stack)
