@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 15:47:52 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/10 16:26:25 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:58:29 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-void    make_upper(unsigned int i, char *c)
-{
-    (void)i;
-    if (*c >= 'a' && *c <= 'z')
-        *c -= 32;
-}
-*/
+
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
@@ -32,14 +25,4 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
-/*
-int main(void)
-{
-    char s[] = "hello world";
 
-    printf("Before: %s\n", s);
-    ft_striteri(s, make_upper);
-    printf("After:  %s\n", s);
-
-    return 0;
-}*/

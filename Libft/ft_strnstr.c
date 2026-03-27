@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:48:42 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/02 22:12:08 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:58:52 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,4 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-/*
-int main(void)
-{
-    const char *big = "Hello world!";
-    const char *little = "world";
 
-    char *res1 = ft_strnstr(big, little, 12);
-    char *res2 = ft_strnstr(big, little, 5);
-    char *res3 = ft_strnstr(big, "", 10);
-
-    printf("Test 1: %s\n", res1 ? res1 : "NULL");
-    printf("Test 2: %s\n", res2 ? res2 : "NULL");
-    printf("Test 3: %s\n", res3 ? res3 : "NULL");
-
-    return 0;
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:01:08 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/18 19:11:56 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:58:47 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-/*
-int	main()
-{
-	char a[8];
-	a[0] = -15;
-	printf("%d\n", strncmp(a, "\0", 1));
-	printf("%d", ft_strncmp(a, "\0", 1));
-}*/
+

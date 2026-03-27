@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 22:12:58 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/07 20:43:26 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:56:49 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,4 @@ int	ft_atoi(const char *nptr)
 	}
 	return ((int)(sign * number));
 }
-/*
-int	main(void)
-{
-    printf("ft_atoi(\"42\") = %d\n", ft_atoi("42"));
-    printf("ft_atoi(\"   42\") = %d\n", ft_atoi("   42"));
-    printf("ft_atoi(\"\\t\\n  -15\") = %d\n", ft_atoi("\t\n  -15"));
-    printf("ft_atoi(\"+7\") = %d\n", ft_atoi("+7"));
-    printf("ft_atoi(\"++7\") = %d\n", ft_atoi("++7"));
-    printf("ft_atoi(\"--7\") = %d\n", ft_atoi("--7"));
-    printf("ft_atoi(\"12abc\") = %d\n", ft_atoi("12abc"));
-    printf("ft_atoi(\"abc12\") = %d\n", ft_atoi("abc12"));
-    printf("ft_atoi(\"- 12\") = %d\n", ft_atoi("- 12"));
-    printf("ft_atoi(\"+\") = %d\n", ft_atoi("+"));
-    printf("ft_atoi(\"0\") = %d\n", ft_atoi("0"));
-    printf("ft_atoi(\"-0\") = %d\n", ft_atoi("-0"));
-    printf("ft_atoi(\"2147483647\") = %d\n", ft_atoi("2147483647"));
-    printf("ft_atoi(\"-2147483648\") = %d\n", ft_atoi("-2147483648"));
-    return 0;
-}*/
+

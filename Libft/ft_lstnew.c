@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 21:29:41 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/10 17:40:55 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:57:53 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,4 @@ t_list	*ft_lstnew(void *content)
 	new->next = NULL;
 	return (new);
 }
-/*
-int main(void)
-{
-    t_list *a;
 
-    a = ft_lstnew("HelloMyFriend");
-    printf("%s\n", (char *)a->content);
-    return 0;
-}*/

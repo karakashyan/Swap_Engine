@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 13:18:39 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/06 16:04:07 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:57:16 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,4 @@ char	*ft_itoa(int n)
 		res[0] = '-';
 	return (res);
 }
-/*
-int	main()
-{
-	printf("%s\n", ft_itoa(123));
-	printf("%s\n", ft_itoa(-123));
-	printf("%s\n", ft_itoa(-2147483648));
-	printf("%s\n", ft_itoa(2147483647));
-	return (0);
-}*/
+

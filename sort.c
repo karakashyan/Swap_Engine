@@ -38,6 +38,28 @@ int	find_min(t_stack *stack)
 	return (min_pos);
 }
 
+int find_max(t_stack *stack)
+{
+    int max_idx;
+    int max_pos;
+    int i;
+
+    i = 0;
+    max_idx = stack->index;
+    max_pos = 0;
+    while (stack)
+    {
+        if (stack->index > max_idx)
+        {
+            max_idx = stack->index;
+            max_pos = i;
+        }
+        i++;
+        stack = stack->next;
+    }
+    return (max_pos);
+}
+
 void	sort_three(t_data *data)
 {
 	int x;
@@ -123,69 +145,6 @@ int	count_chunk(t_stack *stack, int min, int max)
 	return (count);
 }
 
-void	radix_sort(t_data *data)
-{
-	int max_bits;
-	int size;
-	int i;
-
-	size = stack_size(data->a);
-	max_bits = 0;
-	normalize(data->a);
-	while ((size - 1) >> max_bits)
-	{
-		i = size;
-		while (i-- && data->a)
-		{
-			if ((data->a->index >> max_bits) & 1)
-				ra(data);
-			else
-				pb(data);
-		}
-		while (data->b)
-			pa(data);
-		if (is_sorted(data->a))
-        	return ;
-		max_bits++;
-	}
-}
-
-static int	cost_to_top(int pos, int size)
-{
-	if (pos <= size / 2)
-		return (pos);
-	return (size - pos);
-}
-
-int	find_cheapest(t_stack *stack)
-{
-	int size;
-	int best_pos;
-	int best_cost;
-	int best_idx;
-	int i;
-	int cost;
-
-	size = stack_size(stack);
-	best_pos = 0;
-	best_cost = size;
-	best_idx = -1;
-	i = 0;
-	while (stack)
-	{
-		cost = cost_to_top(i, size);
-		if (cost < best_cost || (cost == best_cost && stack->index > best_idx))
-		{
-			best_cost = cost;
-			best_pos = i;
-			best_idx = stack->index;
-		}
-		i++;
-		stack = stack->next;
-	}
-	return (best_pos);
-}
-
 void	chunk_sort(t_data *data)
 {
 	int size;
@@ -196,9 +155,9 @@ void	chunk_sort(t_data *data)
 
 	size = stack_size(data->a);
 	if (size <= 100)
-		chunk_size = 25;
+		chunk_size = 12;
 	else
-		chunk_size = 50;
+		chunk_size = 35;
 	normalize(data->a);
 	chunk = 0;
 	while (chunk * chunk_size < size)
@@ -223,9 +182,36 @@ void	chunk_sort(t_data *data)
 	}
 	while (data->b)
 	{
-		i = find_cheapest(data->b);
+		i = find_max(data->b);
 		bring_to_top(data, i, stack_size(data->b), 1);
 		pa(data);
+	}
+}
+
+void	radix_sort(t_data *data)
+{
+	int max_bits;
+	int size;
+	int i;
+
+	size = stack_size(data->a);
+	max_bits = 0;
+	normalize(data->a);
+	while ((size - 1) >> max_bits)
+	{
+		i = size;
+		while (i-- && data->a)
+		{
+			if ((data->a->index >> max_bits) & 1)
+				ra(data);
+			else
+				pb(data);
+		}
+		while (data->b)
+			pa(data);
+		if (is_sorted(data->a))
+        	return ;
+		max_bits++;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:32:03 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/18 15:39:45 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:51:36 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	p[i] = '\0';
 	return (p);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	char const *d = "0123456789";
-	char *x;
-
-	x = ft_substr(d, 9, 10);
-	printf("%s", x);
-	free(x);
-	return (0);
-}*/

@@ -1,14 +1,5 @@
-Disorder:  52.91%
-Strategy:  Adaptive
-Total ops: 6784
-sa: 0
-sb: 0
-ss: 0
-pa: 2284
-pb: 2284
-ra: 2216
-rb: 0
-rr: 0
-rra: 0
-rrb: 0
-rrr: 0
+[bench] disorder: 49.11%
+[bench] strategy: Adaptive
+[bench] total_ops: 746
+[bench] sa: 0 sb: 73 ss: 0 pa: 100 pb: 100 
+[bench] ra: 350 rb: 64 rr: 0 rra: 0 rrb: 59 rrr: 0 

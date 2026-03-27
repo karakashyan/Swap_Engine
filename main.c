@@ -92,13 +92,13 @@ int	main(int argc, char **argv)
 		free_all(data, arg);
 		return (1);
 	}
-	normalize(data->a);
-	print_stack(data->a);
+	//normalize(data->a);
+	//print_stack(data->a);
 	disorder = compute_disorder(data->a);
 	run_sort(data, flag);
 	if (bench)
 		print_bench(data, disorder, flag);
-	print_stack(data->a);
+	//print_stack(data->a);
 	free_all(data, arg);
 	return (0);
 }

@@ -79,26 +79,6 @@ bool	dub_check(int n, t_stack *a)
 	return (true);
 }
 
-// char	*join_args(int argc, char const **argv)
-// {
-// 	int		i;
-// 	char	*s;
-// 	char	*temp;
-
-// 	i = 2;
-// 	s = ft_strdup(argv[1]);
-// 	while (i < argc)
-// 	{
-// 		temp = ft_strjoin(s, " ");
-// 		free(s);
-// 		s = ft_strjoin(temp, argv[i]);
-// 		free(temp);
-// 		i++;
-// 	}
-// 	return (s);
-// }
-
-
 char	*join_nums(int argc, char const **argv)
 {
 	int		i;

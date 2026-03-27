@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 21:56:49 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/18 14:28:50 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:58:21 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,28 +98,4 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (res);
 }
-/*
-#include <stdio.h>
 
-int	main(void)
-{
-	char **arr = ft_split("  Hello my friend  ", ' ');
-	int	i;
-
-	if (!arr)
-		return (1);
-	i = 0;
-	while (arr[i])
-	{
-		printf("%s", arr[i]);
-		i++;
-	}
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i++]);
-	}
-	free(arr);
-
-	return (0);
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:40:37 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/02/05 16:57:04 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:51:50 by ekarakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	x[ls1 + ls2] = '\0';
 	return (x);
 }
-/*
-int	main()
-{
-	char	*t;
-	
-	t = ft_strjoin("Hello", "World");
-	printf("%s", t);
-	free(t);
-	return (0);
-}*/
