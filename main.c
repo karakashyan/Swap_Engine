@@ -2,43 +2,15 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2026/03/24 14:44:16 by arptadev          #+#    #+#             */
-/*   Updated: 2026/03/24 14:44:16 by arptadev         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/29 14:00:00 by arptadev          #+#    #+#             */
+/*   Updated: 2026/03/29 14:00:00 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-double	compute_disorder(t_stack *stack)
-{
-	int		mistakes;
-	int		total_pairs;
-	t_stack *temp;
-
-	if (!stack)
-		return (0);
-	mistakes = 0;
-	total_pairs = 0;
-	while (stack->next)
-	{
-		temp = stack->next;
-		while (temp)
-		{
-			total_pairs++;
-			if (stack->value > temp->value)
-				mistakes++;
-			temp = temp->next;
-		}
-		stack = stack->next;
-	}
-	return ((double)mistakes / total_pairs);
-}
 
 static void	run_sort(t_data *data, int flag, int bench)
 {

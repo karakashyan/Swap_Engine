@@ -6,7 +6,7 @@
 /*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:37:52 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/29 12:33:56 by arptadev         ###   ########.fr       */
+/*   Updated: 2026/03/29 18:17:32 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@ int	total_ops(t_data *data)
 	return (total);
 }
 
-static char	*get_strategy(int flag)
+static char	*get_strategy(int flag, double disorder)
 {
 	if (flag == 0)
-		return ("Simple O(n^2)");
+		return ("Simple / O(n²)");
 	if (flag == 1)
-		return ("Medium O(n*sqrt(n))");
+		return ("Medium / O(n√n)");
 	if (flag == 2)
-		return ("Complex O(n log n)");
-	return ("Adaptive");
+		return ("Complex / O(n log n)");
+	if (disorder < 0.2)
+		return ("Adaptive / O(n²)");
+	if (disorder < 0.5)
+		return ("Adaptive / O(n√n)");
+	return ("Adaptive / O(n log n)");
 }
 
 static void	print_percent(double d, int fd)
@@ -49,6 +53,31 @@ static void	print_percent(double d, int fd)
 	ft_putnbr_fd(frac, fd);
 }
 
+double	compute_disorder(t_stack *stack)
+{
+	int		mistakes;
+	int		total_pairs;
+	t_stack	*temp;
+
+	if (!stack)
+		return (0);
+	mistakes = 0;
+	total_pairs = 0;
+	while (stack->next)
+	{
+		temp = stack->next;
+		while (temp)
+		{
+			total_pairs++;
+			if (stack->value > temp->value)
+				mistakes++;
+			temp = temp->next;
+		}
+		stack = stack->next;
+	}
+	return ((double)mistakes / total_pairs);
+}
+
 void	print_bench(t_data *data, double disorder, int flag)
 {
 	char		*strat;
@@ -56,7 +85,7 @@ void	print_bench(t_data *data, double disorder, int flag)
 	static char	*names[] = {"sa", "sb", "ss", "pa", "pb",
 		"ra", "rb", "rr", "rra", "rrb", "rrr"};
 
-	strat = get_strategy(flag);
+	strat = get_strategy(flag, disorder);
 	write(2, "[bench] disorder: ", 18);
 	print_percent(disorder, 2);
 	write(2, "%\n[bench] strategy: ", 20);
