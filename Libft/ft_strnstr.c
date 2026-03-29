@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:48:42 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/27 19:58:52 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:13:40 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-

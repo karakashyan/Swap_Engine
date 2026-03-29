@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 21:56:49 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/27 19:58:21 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:14:06 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,3 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (res);
 }
-

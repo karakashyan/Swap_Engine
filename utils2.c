@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 14:05:43 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/26 17:23:02 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:15:33 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	is_sorted(t_stack *stack)
 
 int	fill_stack(t_data *data, char **arg)
 {
-	int size;
-	int i;
-	int number;
+	int	size;
+	int	i;
+	int	number;
 
 	size = count_args(arg);
 	i = size;

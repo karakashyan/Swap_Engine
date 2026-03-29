@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 14:16:17 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/27 19:57:58 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:14:25 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
-

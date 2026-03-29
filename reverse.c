@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   reverse.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+      
+/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2026/03/20 18:40:32 by ekarakas          #+#    #+#             */
 /*   Updated: 2026/03/21 14:58:16 by ekarakas         ###   ########.fr       */
@@ -15,10 +15,9 @@
 
 #include "push_swap.h"
 
-
 void	reverse(t_stack **stack)
 {
-	t_stack *last;
+	t_stack		*last;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;

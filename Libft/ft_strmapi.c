@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 14:46:06 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/27 19:58:43 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:13:50 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	new[i] = '\0';
 	return (new);
 }
-

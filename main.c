@@ -15,42 +15,36 @@
 
 #include "push_swap.h"
 
-
-int	parse_options(int argc, char **argv, int *bench)
+double	compute_disorder(t_stack *stack)
 {
-	int i;
-	int flag;
+	int		mistakes;
+	int		total_pairs;
+	t_stack *temp;
 
-	*bench = 0;
-	flag = 3;
-	i = 1;
-	while (i < argc)
+	if (!stack)
+		return (0);
+	mistakes = 0;
+	total_pairs = 0;
+	while (stack->next)
 	{
-		if (ft_strncmp(argv[i], "--", 2) == 0)
+		temp = stack->next;
+		while (temp)
 		{
-			if (ft_strncmp(argv[i], "--bench", 8) == 0)
-				*bench = 1;
-			else if (ft_strncmp(argv[i], "--simple", 9) == 0)
-				flag = 0;
-			else if (ft_strncmp(argv[i], "--medium", 9) == 0)
-				flag = 1;
-			else if (ft_strncmp(argv[i], "--complex", 10) == 0)
-				flag = 2;
-			else if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
-				flag = 3;
-			else
-			{
-				write(2, "Error\n", 6);
-				return (-1);
-			}
+			total_pairs++;
+			if (stack->value > temp->value)
+				mistakes++;
+			temp = temp->next;
 		}
-		i++;
+		stack = stack->next;
 	}
-	return (flag);
+	return ((double)mistakes / total_pairs);
 }
 
-static void	run_sort(t_data *data, int flag)
+static void	run_sort(t_data *data, int flag, int bench)
 {
+	double		disorder;
+
+	disorder = compute_disorder(data->a);
 	if (flag == 0)
 		insertion_sort(data);
 	else if (flag == 1)
@@ -59,16 +53,66 @@ static void	run_sort(t_data *data, int flag)
 		radix_sort(data);
 	else
 		adaptive_sort(data);
+	if (bench)
+		print_bench(data, disorder, flag);
+}
+
+static char	**prepare_stack(int argc, char **argv, t_data *data)
+{
+	char	*joined;
+	char	**arg;
+
+	joined = join_nums(argc, (char const **)argv);
+	if (!joined)
+	{
+		write(2, "Error\n", 6);
+		free_all(data, NULL);
+		return (NULL);
+	}
+	arg = ft_split(joined, ' ');
+	free(joined);
+	if (!arg || fill_stack(data, arg) < 0)
+	{
+		free_all(data, arg);
+		return (NULL);
+	}
+	return (arg);
+}
+
+int	parse_options(int argc, char **argv, int *bench)
+{
+	int		flag;
+
+	*bench = 0;
+	flag = 3;
+	while (--argc > 0)
+	{
+		argv++;
+		if (ft_strncmp(*argv, "--", 2) == 0)
+		{
+			if (ft_strncmp(*argv, "--bench", 8) == 0)
+				*bench = 1;
+			else if (ft_strncmp(*argv, "--simple", 9) == 0)
+				flag = 0;
+			else if (ft_strncmp(*argv, "--medium", 9) == 0)
+				flag = 1;
+			else if (ft_strncmp(*argv, "--complex", 10) == 0)
+				flag = 2;
+			else if (ft_strncmp(*argv, "--adaptive", 11) == 0)
+				flag = 3;
+			else
+				return (write(2, "Error\n", 6), -1);
+		}
+	}
+	return (flag);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
-	char **arg;
-	char *joined;
-	double disorder;
-	int flag;
-	int bench;
+	t_data	*data;
+	char	**arg;
+	int		flag;
+	int		bench;
 
 	if (argc < 2)
 		return (0);
@@ -78,27 +122,10 @@ int	main(int argc, char **argv)
 	flag = parse_options(argc, argv, &bench);
 	if (flag == -1)
 		return (1);
-	joined = join_nums(argc, (char const **)argv);
-	if (!joined)
-	{
-		write(2, "Error\n", 6);
-		free_all(data, NULL);
+	arg = prepare_stack(argc, argv, data);
+	if (!arg)
 		return (1);
-	}
-	arg = ft_split(joined, ' ');
-	free(joined);
-	if (!arg || fill_stack(data, arg) < 0)
-	{
-		free_all(data, arg);
-		return (1);
-	}
-	//normalize(data->a);
-	//print_stack(data->a);
-	disorder = compute_disorder(data->a);
-	run_sort(data, flag);
-	if (bench)
-		print_bench(data, disorder, flag);
-	//print_stack(data->a);
+	run_sort(data, flag, bench);
 	free_all(data, arg);
 	return (0);
 }

@@ -17,7 +17,7 @@
 
 void	swap(t_stack *stack)
 {
-	int temp;
+	int		temp;
 
 	if (!stack || !stack->next)
 		return ;

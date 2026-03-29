@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:55:04 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/26 16:39:21 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:21:04 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pa(t_data *data)
 {
-	int idx;
+	int	idx;
 
 	if (!data->b)
 		return ;

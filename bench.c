@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:37:52 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/27 21:46:45 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 12:33:56 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,19 @@ static void	print_percent(double d, int fd)
 
 void	print_bench(t_data *data, double disorder, int flag)
 {
-	static char	*names[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr",
-		"rra", "rrb", "rrr"};
 	char		*strat;
 	int			i;
+	static char	*names[] = {"sa", "sb", "ss", "pa", "pb",
+		"ra", "rb", "rr", "rra", "rrb", "rrr"};
 
 	strat = get_strategy(flag);
 	write(2, "[bench] disorder: ", 18);
 	print_percent(disorder, 2);
-	write(2, "%\n", 2);
-	write(2, "[bench] strategy: ", 18);
+	write(2, "%\n[bench] strategy: ", 20);
 	write(2, strat, ft_strlen(strat));
-	write(2, "\n", 1);
-	write(2, "[bench] total_ops: ", 19);
+	write(2, "\n[bench] total_ops: ", 20);
 	ft_putnbr_fd(total_ops(data), 2);
-	write(2, "\n", 1);
-	write(2, "[bench] ", 8);
+	write(2, "\n[bench] ", 9);
 	i = 0;
 	while (i < 11)
 	{

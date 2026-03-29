@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:47:29 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/27 19:57:02 by ekarakas         ###   ########.fr       */
+/*   Updated: 2026/03/29 11:15:01 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(p, nmemb * size);
 	return (p);
 }
-

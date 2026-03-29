@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarakas <ekarakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/21 16:18:43 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/21 16:19:48 by ekarakas         ###   ########.fr       */
+/*   Created: 2026/03/29 13:10:58 by arptadev          #+#    #+#             */
+/*   Updated: 2026/03/29 13:10:58 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	parsing(char *value)
 {
-	int	i;
+	int		i;
 
 	if (!value)
 		return (false);
@@ -34,8 +34,8 @@ bool	parsing(char *value)
 
 static void	check_overflow(int sign, long number)
 {
-	if ((sign == 1 && number > 2147483647)
-		|| (sign == -1 && number > 2147483648))
+	if ((sign == 1 && number > 2147483647) || (sign == -1
+			&& number > 2147483648))
 	{
 		write(2, "Error\n", 6);
 		exit(1);
