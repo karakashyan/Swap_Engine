@@ -89,7 +89,9 @@ char	*join_nums(int argc, char const **argv)
 	s = NULL;
 	while (i < argc)
 	{
-		if (ft_strncmp(argv[i], "--", 2) != 0 && argv[i][0] != '\0')
+		if (argv[i][0] == '\0')
+			return (NULL);
+		if (ft_strncmp(argv[i], "--", 2) != 0)
 		{
 			if (!s)
 				s = ft_strdup(argv[i]);
