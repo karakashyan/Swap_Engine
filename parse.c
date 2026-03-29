@@ -68,41 +68,37 @@ int	atoi_check(const char *nptr)
 	return ((int)(sign * number));
 }
 
-bool	dub_check(int n, t_stack *a)
+static char	*append_arg(char *s, const char *arg)
 {
-	while (a != NULL)
-	{
-		if (a->value == n)
-			return (false);
-		a = a->next;
-	}
-	return (true);
+	char	*temp;
+	char	*result;
+
+	if (!s)
+		return (ft_strdup(arg));
+	temp = ft_strjoin(s, " ");
+	free(s);
+	result = ft_strjoin(temp, arg);
+	free(temp);
+	return (result);
 }
 
 char	*join_nums(int argc, char const **argv)
 {
 	int		i;
+	int		j;
 	char	*s;
-	char	*temp;
 
 	i = 1;
 	s = NULL;
 	while (i < argc)
 	{
-		if (argv[i][0] == '\0')
-			return (NULL);
+		j = 0;
+		while (argv[i][j] == ' ')
+			j++;
+		if (argv[i][j] == '\0')
+			return (free(s), NULL);
 		if (ft_strncmp(argv[i], "--", 2) != 0)
-		{
-			if (!s)
-				s = ft_strdup(argv[i]);
-			else
-			{
-				temp = ft_strjoin(s, " ");
-				free(s);
-				s = ft_strjoin(temp, argv[i]);
-				free(temp);
-			}
-		}
+			s = append_arg(s, argv[i]);
 		i++;
 	}
 	return (s);

@@ -43,7 +43,13 @@ static char	**prepare_stack(int argc, char **argv, t_data *data)
 	}
 	arg = ft_split(joined, ' ');
 	free(joined);
-	if (!arg || fill_stack(data, arg) < 0)
+	if (!arg || !arg[0])
+	{
+		write(2, "Error\n", 6);
+		free_all(data, arg);
+		return (NULL);
+	}
+	if (fill_stack(data, arg) < 0)
 	{
 		free_all(data, arg);
 		return (NULL);
@@ -51,29 +57,41 @@ static char	**prepare_stack(int argc, char **argv, t_data *data)
 	return (arg);
 }
 
+static int	handle_flag(char *arg, int *flag, int *flag_count)
+{
+	if (ft_strncmp(arg, "--simple", 9) == 0)
+		*flag = 0;
+	else if (ft_strncmp(arg, "--medium", 9) == 0)
+		*flag = 1;
+	else if (ft_strncmp(arg, "--complex", 10) == 0)
+		*flag = 2;
+	else if (ft_strncmp(arg, "--adaptive", 11) == 0)
+		*flag = 3;
+	else
+		return (write(2, "Error\n", 6), -1);
+	(*flag_count)++;
+	return (0);
+}
+
 int	parse_options(int argc, char **argv, int *bench)
 {
 	int		flag;
+	int		flag_count;
 
 	*bench = 0;
 	flag = 3;
+	flag_count = 0;
 	while (--argc > 0)
 	{
 		argv++;
-		if (ft_strncmp(*argv, "--", 2) == 0)
+		if (ft_strncmp(*argv, "--bench", 8) == 0)
+			*bench = 1;
+		else if (ft_strncmp(*argv, "--", 2) == 0)
 		{
-			if (ft_strncmp(*argv, "--bench", 8) == 0)
-				*bench = 1;
-			else if (ft_strncmp(*argv, "--simple", 9) == 0)
-				flag = 0;
-			else if (ft_strncmp(*argv, "--medium", 9) == 0)
-				flag = 1;
-			else if (ft_strncmp(*argv, "--complex", 10) == 0)
-				flag = 2;
-			else if (ft_strncmp(*argv, "--adaptive", 11) == 0)
-				flag = 3;
-			else
-				return (write(2, "Error\n", 6), -1);
+			if (handle_flag(*argv, &flag, &flag_count) == -1)
+				return (-1);
+			if (flag_count > 1)
+				return (-1);
 		}
 	}
 	return (flag);
@@ -93,7 +111,7 @@ int	main(int argc, char **argv)
 		return (1);
 	flag = parse_options(argc, argv, &bench);
 	if (flag == -1)
-		return (1);
+		return (write(2, "Error\n", 6), 1);
 	arg = prepare_stack(argc, argv, data);
 	if (!arg)
 		return (1);

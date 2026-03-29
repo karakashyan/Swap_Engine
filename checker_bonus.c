@@ -6,21 +6,11 @@
 /*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:40:14 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/29 12:47:50 by arptadev         ###   ########.fr       */
+/*   Updated: 2026/03/29 20:02:54 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	ft_strcmp(const char *s1, const char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
 
 static void	trim_newline(char *s)
 {
@@ -88,11 +78,38 @@ static void	read_and_apply(t_data *data)
 		write(1, "KO\n", 3);
 }
 
+static char	**init_data(int argc, char **argv, t_data *data)
+{
+	char	*joined;
+	char	**arg;
+
+	joined = join_nums(argc, (char const **)argv);
+	if (!joined)
+	{
+		write(2, "Error\n", 6);
+		free_all(data, NULL);
+		return (NULL);
+	}
+	arg = ft_split(joined, ' ');
+	free(joined);
+	if (!arg || !arg[0])
+	{
+		write(2, "Error\n", 6);
+		free_all(data, arg);
+		return (NULL);
+	}
+	if (fill_stack(data, arg) < 0)
+	{
+		free_all(data, arg);
+		return (NULL);
+	}
+	return (arg);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 	char	**arg;
-	char	*joined;
 
 	if (argc < 2)
 		return (0);
@@ -100,16 +117,9 @@ int	main(int argc, char **argv)
 	if (!data)
 		return (1);
 	data->silent = 1;
-	joined = join_nums(argc, (char const **)argv);
-	if (!joined)
-	{
-		write(2, "Error\n", 6);
-		return (free_all(data, NULL), 1);
-	}
-	arg = ft_split(joined, ' ');
-	free(joined);
-	if (!arg || fill_stack(data, arg) < 0)
-		return (free_all(data, arg), 1);
+	arg = init_data(argc, argv, data);
+	if (!arg)
+		return (1);
 	read_and_apply(data);
 	return (free_all(data, arg), 0);
 }

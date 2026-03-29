@@ -6,7 +6,7 @@
 /*   By: arptadev <arptadev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:53:12 by ekarakas          #+#    #+#             */
-/*   Updated: 2026/03/29 13:18:38 by arptadev         ###   ########.fr       */
+/*   Updated: 2026/03/29 20:49:47 by arptadev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void				free_all(t_data *data, char **arg);
 double				compute_disorder(t_stack *stack);
 int					parse_options(int argc, char **argv, int *bench);
 int					fill_stack(t_data *data, char **arg);
+int					ft_strcmp(const char *s1, const char *s2);
 
 #endif
